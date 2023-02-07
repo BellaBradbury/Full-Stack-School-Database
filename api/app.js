@@ -5,12 +5,16 @@ const express = require('express');
 const morgan = require('morgan');
 const Sequelize = require('sequelize');
 const bcrypt = require('bcrypt');
+const cors = require('cors');
 
 const models = require('./models');
 const { Course, User } = models;
 const { authenticateUser } = require('./auth-user');
 
 const router = express.Router();
+
+// Enable all CORS requests
+app.use(cors());
 
 // connect & test database connection
 const sequelize = new Sequelize({
