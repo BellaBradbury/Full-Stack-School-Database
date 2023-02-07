@@ -13,9 +13,6 @@ const { authenticateUser } = require('./auth-user');
 
 const router = express.Router();
 
-// Enable all CORS requests
-app.use(cors());
-
 // connect & test database connection
 const sequelize = new Sequelize({
   dialect: 'sqlite',
@@ -37,6 +34,9 @@ const enableGlobalErrorLogging = process.env.ENABLE_GLOBAL_ERROR_LOGGING === 'tr
 
 // create the Express app
 const app = express();
+
+// Enable all CORS requests
+app.use(cors());
 
 // setup morgan which gives us http request logging
 app.use(morgan('dev'));
