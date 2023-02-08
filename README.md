@@ -8,7 +8,6 @@ Submitted 00/00/00 ***STATUS***
 * React
 * JSX
 * React Router
-* Axios
 * CSS
 * Javascript
 * Create React App

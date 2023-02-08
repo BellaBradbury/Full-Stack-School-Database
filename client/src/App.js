@@ -1,11 +1,23 @@
 import logo from './logo.svg';
 import './App.css';
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 
-import Header from './components/Header';
-import UserSignOut from './components/UserSignOut';
+// import Header from './components/Header';
+// import UserSignOut from './components/UserSignOut';
 
-function App() {
+const App = () => {
+  const [courses, setCourses] = useState();
+
+  axios.get('http://localhost:5000/api/courses')
+       .then( response => {
+          setCourses(response.data);
+          console.log(response.data);
+       })
+       .catch(error => {
+        console.log('Error fetching and parsing request', error);
+       });
+
   return (
     <div className="App">
       <header className="App-header">
