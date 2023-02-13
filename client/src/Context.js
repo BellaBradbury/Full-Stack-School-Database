@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import Cookies from 'js-cookie';
 import Data from './Data';
 
-const Context = React.createContext();
+const UserContext = React.createContext();
+const CourseContext = React.createContext();
 
-export class Provider extends Component {
+export const Provider = (props) => {
     constructor() {
         super();
         this.data = new Data();
@@ -33,10 +34,10 @@ export class Provider extends Component {
         );
     }
 
-    signIn = async (username, password) => {
-        const user = await this.data.getUser(username, password);
+    const signIn = async (username, password) => {
+        const user = await data.getUser(username, password);
         if (user !== null) {
-            this.setState(() => {
+            setUser(() => {
                 return {
                     authenticatedUser: user,
                 };
@@ -52,20 +53,16 @@ export class Provider extends Component {
     }
 
     signOut = () => {
-        this.setState({authenticatedUser: null});
+        setUser({authenticatedUser: null});
         Cookies.remove('authenticatedUser');
     }
+
+    return (
+        <Context.Consumer>
+            {context => <Component {...props} context={context} />}
+        </Context.Consumer>
+    );
 }
 
 export const Consumer = Context.Consumer;
-
-export default function withContext(Component) {
-    return function ContextComponent(props) {
-        return (
-            <Context.Consumer>
-                {context => <Component {...props} context={context} />}
-            </Context.Consumer>
-        );
-    }
-}
 
