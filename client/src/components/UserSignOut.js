@@ -1,10 +1,14 @@
-import React from "react";
+import React, {useContext, useEffect} from "react";
 import { Navigate } from "react-router-dom";
+import {UserContext} from '../Context';
 
-export default ({context}) => {
-    context.actions.signOut();
+const UserSignOut = () => {
+    const {actions} = useContext(UserContext);
+    useEffect(() => actions.signOut());
 
     return (
         <Navigate to="/" />
     );
 }
+
+export default UserSignOut;
