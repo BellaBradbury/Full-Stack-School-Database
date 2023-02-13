@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Form from './Form';
+import {userContext} from '../Context';
 
-export default class UserSignIn extends Component {
+const UserSignIn = () => {
     state = {
         username: '',
         password: '',
@@ -19,7 +20,6 @@ export default class UserSignIn extends Component {
         return (
             <div className='form--centered'>
                 <h2>Sign In</h2>
-
                 <Form
                     cancel={this.cancel}
                     errors={errors}
@@ -84,3 +84,5 @@ export default class UserSignIn extends Component {
         this.props.history.push('/');
     }
 }
+
+export default UserSignIn;
