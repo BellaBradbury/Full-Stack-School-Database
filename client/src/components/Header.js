@@ -1,19 +1,33 @@
-// import React from 'react';
-// import { NavLink } from 'react-router-dom';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-// const Header = props => {
-//     return(
-//         <div className='wrap header--flex'>
-//             <h1 className='header--logo'><NavLink to="/"></NavLink></h1>
-//             <nav>
-//                 <ul className='header--signedout'>
-//                     <li><NavLink to="/signup"></NavLink></li>
-//                     <li><NavLink to="/signin"></NavLink></li>
-//                 </ul>
-//             </nav>
-//         </div>
-//     );
-// };
+export default class Header extends React.PureComponent {
+    render() {
+        const {context} = this.props;
+        const authUser = context.authenticatedUser;
 
-// export default Header;
+        return(
+            <header>
+                <div className='wrap header--flex'>
+                <h1 className='header--logo'><NavLink to="/">Courses</NavLink></h1>
+                    <nav>
+                        <ul className='header--signedout'>
+                            {authUser ? (
+                                <React.Fragment>
+                                    <li><span>Welcome, {authUser.name}!</span></li>
+                                    <li><NavLink to='/signout'>Sign Out</NavLink></li>
+                                </React.Fragment>
+                            ) : (
+                                <React.Fragment>
+                                    <li><NavLink to="/signup">Sign Up</NavLink></li>
+                                    <li><NavLink to="/signin">Sign In</NavLink></li>
+                                </React.Fragment>
+                            )}
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+        );
+    }
+};
 
