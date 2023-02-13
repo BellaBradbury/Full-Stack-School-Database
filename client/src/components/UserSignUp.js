@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Form from './Form';
+import {UserContext} from '../Context';
 
-export default class UserSignUp extends Component {
+const UserSignUp = () => {
     state = {
         name: '',
         username: '',
@@ -102,3 +103,5 @@ export default class UserSignUp extends Component {
         this.props.history.push('/');
     }
 }
+
+export default UserSignUp;
