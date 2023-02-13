@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default (props) => {
+const Form = (props) => {
     const {
         cancel,
         errors,
@@ -24,10 +24,8 @@ export default (props) => {
             <DisplayErrors errors={errors} />
             <form onSubmit={submitForm}>
                 {elements()}
-                <div>
                     <button className="button" type="submit">{submitButtonText}</button>
-                    <button className="button" onClick={cancelForm}>Cancel</button>
-                </div>
+                    <button className="button button-secondary" onClick={cancelForm}>Cancel</button>
             </form>
         </div>
     );
@@ -38,8 +36,8 @@ function DisplayErrors({ errors }) {
 
     if (errors.length) {
         displayErrors = (
-            <div className="wrap">
-                <h2>Form Validation Errors</h2>
+            <div className="validation--errors">
+                <h3>Form Validation Errors</h3>
                 <ul>
                     {errors.map( (error, i) => <li key={i}>{error}</li>)}
                 </ul>
@@ -49,3 +47,5 @@ function DisplayErrors({ errors }) {
 
     return displayErrors;
 }
+
+export default Form;
