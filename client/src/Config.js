@@ -1,4 +1,6 @@
 
-export default {
+const url = {
     apiBaseUrl: 'http://localhost:5000/api',
-  };
+};
+
+export default url;
