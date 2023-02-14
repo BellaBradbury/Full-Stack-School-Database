@@ -1,38 +1,52 @@
-import React, { Component } from 'react';
+// MODULES
+import React, { Component, useState } from 'react';
 import Cookies from 'js-cookie';
 import Data from './Data';
+import config from './Config';
 
+// VARIABLES
 const UserContext = React.createContext();
 const CourseContext = React.createContext();
 
 export const Provider = (props) => {
-    constructor() {
-        super();
-        this.data = new Data();
-        this.cookie = Cookies.get('authenticatedUser');
+    // state  
+    const data = new Data();
+    const [user, setUser] = useState([]);
+        // courses
+        // errors
 
-        this.state = {
-            authenticatedUser: this.cookie ? JSON.parse(this.cookie) : null
-        };
-    }
+    // variables
+    
+    const {authenticatedUser} = user;
+    const cookie = Cookies.get('authenticatedUser');
+    
+    // constructor() {
+    //     super();
+    //     this.data = new Data();
+    //     this.cookie = Cookies.get('authenticatedUser');
 
-    render() {
-        const {authenticatedUser} = this.state;
-        const value = {
-            authenticatedUser,
-            data: this.data,
-            actions: {
-                signIn: this.signIn,
-                signOut: this.signOut
-            },
-        };
+    //     this.state = {
+    //         authenticatedUser: this.cookie ? JSON.parse(this.cookie) : null
+    //     };
+    // }
 
-        return (
-            <Context.Provider value={value}>
-                {this.props.children}
-            </Context.Provider>
-        );
-    }
+    // render() {
+    //     const {authenticatedUser} = this.state;
+    //     const value = {
+    //         authenticatedUser,
+    //         data: this.data,
+    //         actions: {
+    //             signIn: this.signIn,
+    //             signOut: this.signOut
+    //         },
+    //     };
+
+    //     return (
+    //         <Context.Provider value={value}>
+    //             {this.props.children}
+    //         </Context.Provider>
+    //     );
+    // }
 
     const signIn = async (username, password) => {
         const user = await data.getUser(username, password);

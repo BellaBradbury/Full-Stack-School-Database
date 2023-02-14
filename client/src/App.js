@@ -27,7 +27,6 @@ function App() {
         <Router>
             <div>
                 <HeaderWithContext />
-
                 <Routes>
                     <Route exact path='/' component={MainPage} />
                     <PrivateRoute path='/authenticated' component={AuthWithContext} />
@@ -40,6 +39,8 @@ function App() {
         </Router>
     );
 };
+
+export default App;
 
 
 
