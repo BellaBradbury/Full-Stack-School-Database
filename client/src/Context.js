@@ -2,56 +2,47 @@
 import React, { Component, useState } from 'react';
 import Cookies from 'js-cookie';
 import Data from './Data';
-import config from './Config';
 
 // VARIABLES
-const UserContext = React.createContext();
-const CourseContext = React.createContext();
+const Context = React.createContext();
 
-export const Provider = (props) => {
-    // state  
-    const data = new Data();
-    const [user, setUser] = useState([]);
-        // courses
-        // errors
+export class Provider extends Component { 
+    constructor() {
+        super();
+        this.data = new Data();
+        this.cookie = Cookies.get('authenticatedUser');
 
-    // variables
-    
-    const {authenticatedUser} = user;
-    const cookie = Cookies.get('authenticatedUser');
-    
-    // constructor() {
-    //     super();
-    //     this.data = new Data();
-    //     this.cookie = Cookies.get('authenticatedUser');
+        this.state = {
+            authenticatedUser: this.cookie ? JSON.parse(this.cookie) : null
+        };
+    }
 
-    //     this.state = {
-    //         authenticatedUser: this.cookie ? JSON.parse(this.cookie) : null
-    //     };
-    // }
+    render() {
+        const {authenticatedUser} = this.state;
+        const value = {
+            authenticatedUser,
+            data: this.data,
+            actions: {
+                signIn: this.signIn,
+                signOut: this.signOut,
+                signUp: this.signUp,
+                createCourse: this.createCourse,
+                updateCourse: this.updateCourse,
+                deleteCourse: this.deleteCourse
+            },
+        };
 
-    // render() {
-    //     const {authenticatedUser} = this.state;
-    //     const value = {
-    //         authenticatedUser,
-    //         data: this.data,
-    //         actions: {
-    //             signIn: this.signIn,
-    //             signOut: this.signOut
-    //         },
-    //     };
+        return (
+            <Context.Provider value={value}>
+                {this.props.children}
+            </Context.Provider>
+        );
+    }
 
-    //     return (
-    //         <Context.Provider value={value}>
-    //             {this.props.children}
-    //         </Context.Provider>
-    //     );
-    // }
-
-    const signIn = async (username, password) => {
-        const user = await data.getUser(username, password);
+    signIn = async (username, password) => {
+        const user = await this.data.getUser(username, password);
         if (user !== null) {
-            setUser(() => {
+            this.setState(() => {
                 return {
                     authenticatedUser: user,
                 };
@@ -67,16 +58,64 @@ export const Provider = (props) => {
     }
 
     signOut = () => {
-        setUser({authenticatedUser: null});
+        this.setState({authenticatedUser: null});
         Cookies.remove('authenticatedUser');
     }
 
-    return (
-        <Context.Consumer>
-            {context => <Component {...props} context={context} />}
-        </Context.Consumer>
-    );
+    signUp = async (firstName, lastName, emailAddress, password) => {
+        const userInfo = {
+            firstName,
+            lastName,
+            emailAddress,
+            password
+        };
+
+        const user = await this.data.createUser(userInfo);
+        if (user !== null) {
+            this.setState(() => {
+                return {
+                    authenticatedUser: user,
+                };
+            });
+        }
+    }
+
+    createCourse = async (course, username, password) => {
+        const courseInfo = await this.data.createCourse(
+            course, 
+            username,
+            password
+        );
+        return courseInfo;
+    }
+
+    updateCourse = async (course, username, password) => {
+        const courseInfo = await this.data.updateCourse(
+            course, 
+            username,
+            password
+        );
+        return courseInfo;
+    }
+
+    deleteCourse = async (course, username, password) => {
+        const courseInfo = await this.data.deleteCourse(
+            course, 
+            username,
+            password
+        );
+        return courseInfo;
+    }
 }
 
 export const Consumer = Context.Consumer;
 
+export default function withContext(Component) {
+    return function ContextComponent(props) {
+      return (
+        <Context.Consumer>
+          {context => <Component {...props} context={context} />}
+        </Context.Consumer>
+      );
+    }
+  }
