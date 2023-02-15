@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Form from './Form';
 import {userContext} from '../Context';
 
-const UserSignIn = () => {
+export default class UserSignIn extends Component {
     state = {
         username: '',
         password: '',
@@ -84,5 +84,3 @@ const UserSignIn = () => {
         this.props.history.push('/');
     }
 }
-
-export default UserSignIn;

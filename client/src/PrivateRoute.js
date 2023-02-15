@@ -2,7 +2,7 @@ import React from "react";
 import {Route, Navigate} from 'react-router-dom';
 import {Consumer} from './Context';
 
-export default ({ component: Component, ...rest }) => {
+export default function PrivateRoute ({ component: Component, ...rest }) {
     return (
         <Consumer>
             {context => (

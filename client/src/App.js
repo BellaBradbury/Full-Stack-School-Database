@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 
 import Header from './components/Header';
-import MainPage from './components/Public';
+import Courses from './components/Courses';
 import NotFound from './components/NotFound';
 import UserSignUp from './components/UserSignUp';
 import UserSignIn from './components/UserSignIn';
@@ -28,7 +28,10 @@ function App() {
             <div>
                 <HeaderWithContext />
                 <Routes>
-                    <Route exact path='/' component={MainPage} />
+                    <Route exact path='/' component={Courses} />
+                    <Route path='/signUp' component={UserSignUpWithContext} />
+                    <Route path='/signIn' component={UserSignInWithContext} />
+                    <Route path='/signOut' component={UserSignOutWithContext} />
                     <PrivateRoute path='/authenticated' component={AuthWithContext} />
                     <Route path='/signin' component={UserSignInWithContext} />
                     <Route path='/signup' component={UserSignUpWithContext} />
