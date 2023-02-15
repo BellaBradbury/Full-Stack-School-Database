@@ -13,7 +13,9 @@ import UserSignIn from './components/UserSignIn';
 import UserSignOut from './components/UserSignOut';
 import CreateCourse from './components/CreateCourse';
 import CourseDetail from './components/CourseDetail';
-import UpdateCourse from './components/UpdateCourse'
+import UpdateCourse from './components/UpdateCourse';
+import Error from './components/Error';
+import Forbidden from './components/Forbidden';
 
 import withContext from './Context';
 import PrivateRoute from './PrivateRoute';
@@ -25,6 +27,7 @@ const UserSignOutWithContext = withContext(UserSignOut);
 const CourseCreateWithContext = withContext(CreateCourse);
 const CourseDetailWithContext = withContext(CourseDetail);
 const CourseUpdateWithContext = withContext(UpdateCourse);
+const ForbiddenWithContext = withContext(Forbidden);
 
 function App() {
     return(
@@ -32,17 +35,19 @@ function App() {
             <div>
                 <HeaderWithContext />
                 <Routes>
-                    <Route exact path='/' component={Courses} />
-                    <Route path='/courses/:id' component={CourseDetailWithContext} />
-                    <Route path='/signUp' component={UserSignUpWithContext} />
-                    <Route path='/signIn' component={UserSignInWithContext} />
-                    <Route path='/signOut' component={UserSignOutWithContext} />
-                    <PrivateRoute path='/courses/create' component={CourseCreateWithContext} />
-                    <PrivateRoute path='/courses/:id/update' component={CourseUpdateWithContext} />
-                    <Route path='/notfound' component={NotFound} />
-                    <Route path='*' component={NotFound} />
-                    <Route path='/forbidden' />
-                    <Route path='/error' />
+                    <Route exact path='/' element={Courses} />
+                    <Route path='/courses/:id' element={CourseDetailWithContext} />
+                    <Route path='/signUp' element={UserSignUpWithContext} />
+                    <Route path='/signIn' element={UserSignInWithContext} />
+                    <Route path='/signOut' element={UserSignOutWithContext} />
+                    <Route element={PrivateRoute}>
+                        <Route path='/courses/create' element={CourseCreateWithContext} />
+                        <Route path='/courses/:id/update' element={CourseUpdateWithContext} />
+                    </Route>
+                    <Route path='/notfound' element={NotFound} />
+                    <Route path='*' element={NotFound} />
+                    <Route path='/forbidden' element={ForbiddenWithContext} />
+                    <Route path='/error' element={Error} />
                 </Routes>
             </div>
         </Router>
