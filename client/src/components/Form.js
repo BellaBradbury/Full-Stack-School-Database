@@ -1,14 +1,12 @@
 import React from 'react';
 
-const Form = (props) => {
-    const {
+export default function Form ({
         cancel,
         errors,
         submit,
         submitButtonText,
         elements
-    } = props;
-
+}) {
     function submitForm(event) {
         event.preventDefault();
         submit();
@@ -22,7 +20,7 @@ const Form = (props) => {
     return (
         <div>
             <DisplayErrors errors={errors} />
-            <form onSubmit={submitForm}>
+            <form onSubmit={submitForm} type='submit'>
                 {elements()}
                     <button className="button" type="submit">{submitButtonText}</button>
                     <button className="button button-secondary" onClick={cancelForm}>Cancel</button>
@@ -47,5 +45,3 @@ function DisplayErrors({ errors }) {
 
     return displayErrors;
 }
-
-export default Form;
