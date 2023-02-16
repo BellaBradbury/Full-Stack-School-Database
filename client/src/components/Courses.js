@@ -12,6 +12,7 @@ export default function Courses({ history }) {
             await axios.get(config.apiBaseUrl + '/courses')
                     .then((response) => {
                         setCourses(response.data.courses);
+                        console.log(coursesData);
                     })
                     .catch((err) => {
                         history.push({
@@ -20,7 +21,7 @@ export default function Courses({ history }) {
                     });
         }
         coursesFind();
-    }, [history]);
+    }, [history, coursesData]);
 
     const courseTitles = coursesData.map((course) => {
         return (
