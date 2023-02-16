@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import {Link, useParams} from 'react-router-dom';
 import config from '../Config';
 import axios from 'axios';
-import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
+import ReactMarkdown from 'react-markdown';
 
 export default function CourseDetail({context, history}) {
     const {authenticatedUser} = context;
@@ -13,7 +13,7 @@ export default function CourseDetail({context, history}) {
 
     useEffect(() => {
         const courseFind = async () => {
-            const course = await axios(config.apiBaseUrl + '/courses' + id)
+            const course = await axios(config.apiBaseUrl + '/courses/' + id)
                                     .catch((error) => {
                                         history.push({
                                             pathname: '/error', 
