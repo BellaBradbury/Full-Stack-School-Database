@@ -22,8 +22,8 @@ export default function CourseDetail({context, history}) {
                                             }});
                                     });
 
-            setCourse(course.data.course);
-            if (setCourse.data.course === null) {
+            setCourse(course.data);
+            if (setCourse.data === null) {
                 history.push('/notfound');
             } else {
                 setIsLoaded(true);
@@ -74,7 +74,7 @@ export default function CourseDetail({context, history}) {
                                 <div>
                                     <h3 className='course--detail--title'>Course</h3>
                                     <h4 className='course--name'>{course.title}</h4>
-                                    <p>By {course.user.firstName} {course.user.lastName}</p>
+                                    <p>By {course.firstName} {course.lastName}</p>
                                     <ReactMarkdown>{course.description}</ReactMarkdown>
                                 </div>
                                 <div>

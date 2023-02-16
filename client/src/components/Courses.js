@@ -11,7 +11,7 @@ export default function Courses({ history }) {
         const coursesFind = async () => {
             await axios.get(config.apiBaseUrl + '/courses')
                     .then((response) => {
-                        setCourses(response.data.courses);
+                        setCourses(response.data);
                         console.log(coursesData);
                     })
                     .catch((err) => {
