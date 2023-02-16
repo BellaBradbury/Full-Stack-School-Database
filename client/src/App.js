@@ -36,19 +36,21 @@ function App() {
             <div>
                 <HeaderWithContext />
                 <Switch>
-                    <Route exact path='/' component={Courses()} />
-                    <Route path='/courses/:id' component={CourseDetailWithContext()} />
-                    <Route path='/signUp' component={UserSignUpWithContext()} />
-                    <Route path='/signIn' component={UserSignInWithContext()} />
-                    <Route path='/signOut' component={UserSignOutWithContext()} />
-                    <Route component={PrivateRoute()}>
-                        <Route path='/courses/create' component={CourseCreateWithContext()} />
-                        <Route path='/courses/:id/update' component={CourseUpdateWithContext()} />
-                    </Route>
-                    <Route path='/notfound' component={NotFound()} />
-                    <Route path='*' component={NotFound()} />
-                    <Route path='/forbidden' component={ForbiddenWithContext()} />
-                    <Route path='/error' component={Error()} />
+                    <Route exact path='/' component={Courses} />
+                    <Route path='/courses/:id' component={CourseDetailWithContext} />
+                    <Route path='/signUp' component={UserSignUpWithContext} />
+                    <Route path='/signIn' component={UserSignInWithContext} />
+                    <Route path='/signOut' component={UserSignOutWithContext} />
+                    {/* <Route component={PrivateRoute}>
+                        <Route path='/courses/create' component={CourseCreateWithContext} />
+                        <Route path='/courses/:id/update' component={CourseUpdateWithContext} />
+                    </Route> */}
+                    <PrivateRoute path='/courses/create' component={CourseCreateWithContext} />
+                    <PrivateRoute path='/courses/:id/update' component={CourseUpdateWithContext} />
+                    <Route path='/notfound' component={NotFound} />
+                    <Route path='*' component={NotFound} />
+                    <Route path='/forbidden' component={ForbiddenWithContext} />
+                    <Route path='/error' component={Error} />
                 </Switch>
             </div>
         </Router>
