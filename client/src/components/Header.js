@@ -1,3 +1,4 @@
+// IMPORTED FUNCTIONS & MODULES
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 

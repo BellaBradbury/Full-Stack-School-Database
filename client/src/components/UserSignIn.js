@@ -1,7 +1,7 @@
+// IMPORTED FUNCTIONS & MODULES
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Form from './Form';
-import {userContext} from '../Context';
 
 export default class UserSignIn extends Component {
     state = {

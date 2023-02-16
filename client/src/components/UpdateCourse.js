@@ -1,7 +1,6 @@
+// IMPORTED FUNCTIONS & MODULES
 import React, {Component} from 'react';
 import Form from './Form';
-import config from '../Config';
-import axios from 'axios';
 
 export default class UpdateCourse extends Component {
     change = (event) => {

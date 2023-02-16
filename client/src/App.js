@@ -1,8 +1,9 @@
+// IMPORTED FUNCTIONS & MODULES
 import React from 'react';
 import {
     BrowserRouter as Router,
     Route,
-    Routes
+    Switch
 } from 'react-router-dom';
 
 import Header from './components/Header';
@@ -34,21 +35,21 @@ function App() {
         <Router>
             <div>
                 <HeaderWithContext />
-                <Routes>
-                    <Route exact path='/' element={Courses()} />
-                    <Route path='/courses/:id' element={CourseDetailWithContext()} />
-                    <Route path='/signUp' element={UserSignUpWithContext()} />
-                    <Route path='/signIn' element={UserSignInWithContext()} />
-                    <Route path='/signOut' element={UserSignOutWithContext()} />
-                    <Route element={PrivateRoute()}>
-                        <Route path='/courses/create' element={CourseCreateWithContext()} />
-                        <Route path='/courses/:id/update' element={CourseUpdateWithContext()} />
+                <Switch>
+                    <Route exact path='/' component={Courses()} />
+                    <Route path='/courses/:id' component={CourseDetailWithContext()} />
+                    <Route path='/signUp' component={UserSignUpWithContext()} />
+                    <Route path='/signIn' component={UserSignInWithContext()} />
+                    <Route path='/signOut' component={UserSignOutWithContext()} />
+                    <Route component={PrivateRoute()}>
+                        <Route path='/courses/create' component={CourseCreateWithContext()} />
+                        <Route path='/courses/:id/update' component={CourseUpdateWithContext()} />
                     </Route>
-                    <Route path='/notfound' element={NotFound()} />
-                    <Route path='*' element={NotFound()} />
-                    <Route path='/forbidden' element={ForbiddenWithContext()} />
-                    <Route path='/error' element={Error()} />
-                </Routes>
+                    <Route path='/notfound' component={NotFound()} />
+                    <Route path='*' component={NotFound()} />
+                    <Route path='/forbidden' component={ForbiddenWithContext()} />
+                    <Route path='/error' component={Error()} />
+                </Switch>
             </div>
         </Router>
     );

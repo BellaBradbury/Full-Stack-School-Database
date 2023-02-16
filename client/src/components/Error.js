@@ -1,3 +1,4 @@
+// IMPORTED FUNCTIONS & MODULES
 import React from 'react';
 
 export default function Error(props) {
