@@ -35,19 +35,19 @@ function App() {
             <div>
                 <HeaderWithContext />
                 <Routes>
-                    <Route exact path='/' element={Courses} />
-                    <Route path='/courses/:id' element={CourseDetailWithContext} />
-                    <Route path='/signUp' element={UserSignUpWithContext} />
-                    <Route path='/signIn' element={UserSignInWithContext} />
-                    <Route path='/signOut' element={UserSignOutWithContext} />
-                    <Route element={PrivateRoute}>
-                        <Route path='/courses/create' element={CourseCreateWithContext} />
-                        <Route path='/courses/:id/update' element={CourseUpdateWithContext} />
+                    <Route exact path='/' element={Courses()} />
+                    <Route path='/courses/:id' element={CourseDetailWithContext()} />
+                    <Route path='/signUp' element={UserSignUpWithContext()} />
+                    <Route path='/signIn' element={UserSignInWithContext()} />
+                    <Route path='/signOut' element={UserSignOutWithContext()} />
+                    <Route element={PrivateRoute()}>
+                        <Route path='/courses/create' element={CourseCreateWithContext()} />
+                        <Route path='/courses/:id/update' element={CourseUpdateWithContext()} />
                     </Route>
-                    <Route path='/notfound' element={NotFound} />
-                    <Route path='*' element={NotFound} />
-                    <Route path='/forbidden' element={ForbiddenWithContext} />
-                    <Route path='/error' element={Error} />
+                    <Route path='/notfound' element={NotFound()} />
+                    <Route path='*' element={NotFound()} />
+                    <Route path='/forbidden' element={ForbiddenWithContext()} />
+                    <Route path='/error' element={Error()} />
                 </Routes>
             </div>
         </Router>

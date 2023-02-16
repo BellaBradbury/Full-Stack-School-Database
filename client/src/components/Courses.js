@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import config from '../Config';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -6,18 +6,20 @@ import { Link } from 'react-router-dom';
 export default function Courses({ history }) {
     const [coursesData, setCourses] = useState([]);
 
-    const coursesFind = async () => {
-        await axios.get(config.apiBaseUrl + '/courses')
-                   .then((res) => {
-                    setCourses(res.data.courses);
-                   })
-                   .catch((err) => {
-                    history.push({
-                        pathname: '/errors', 
-                        state: {error: err.message}});
-                   });
-    }
-    coursesFind();
+    useEffect(() => {
+        const coursesFind = async () => {
+            await axios.get(config.apiBaseUrl + '/courses')
+                    .then((res) => {
+                        setCourses(res.data.courses);
+                    })
+                    .catch((err) => {
+                        history.push({
+                            pathname: '/errors', 
+                            state: {error: err.message}});
+                    });
+        }
+        coursesFind();
+    }, [history]);
 
     const courseTitles = coursesData.map((course) => {
         return (
