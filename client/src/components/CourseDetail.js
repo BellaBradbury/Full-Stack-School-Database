@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link, useParams} from 'react-router-dom';
 import config from '../Config';
 import axios from 'axios';
@@ -10,24 +10,26 @@ export default function CourseDetail({context, history}) {
     const {id} = useParams();
     const [isLoaded, setIsLoaded] = useState(false);
 
-    const courseFind = async () => {
-        const course = await axios(config.apiBaseUrl + '/courses' + id)
-                                  .catch((error) => {
-                                    history.push({
-                                        pathname: '/error', 
-                                        state: {
-                                            error: error.message
-                                        }});
-                                  });
+    useEffect(() => {
+        const courseFind = async () => {
+            const course = await axios(config.apiBaseUrl + '/courses' + id)
+                                    .catch((error) => {
+                                        history.push({
+                                            pathname: '/error', 
+                                            state: {
+                                                error: error.message
+                                            }});
+                                    });
 
-        setCourse(course.data.course);
-        if (setCourse.data.course === null) {
-            history.push('/notfound');
-        } else {
-            setIsLoaded(true);
+            setCourse(course.data.course);
+            if (setCourse.data.course === null) {
+                history.push('/notfound');
+            } else {
+                setIsLoaded(true);
+            }
         }
-    }
-    courseFind();
+        courseFind();
+    }, [id, history]);
 
     const courseDelete = () => {
         if (authenticatedUser !== null) {

@@ -1,5 +1,5 @@
 // MODULES
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import Cookies from 'js-cookie';
 import Data from './Data';
 
@@ -47,18 +47,21 @@ export class Provider extends Component {
                     authenticatedUser: user,
                 };
             });
+            user.user.password = password;
 
             const cookieOptions = {
                 expires: 1
             };
-
+            
             Cookies.set('authenticatedUser', JSON.stringify(user), cookieOptions);
         }
         return user;
     }
 
     signOut = () => {
-        this.setState({authenticatedUser: null});
+        this.setState(() => {
+            return {authenticatedUser: null};
+        });
         Cookies.remove('authenticatedUser');
     }
 
@@ -114,7 +117,7 @@ export default function withContext(Component) {
     return function ContextComponent(props) {
       return (
         <Context.Consumer>
-          {context => <Component {...props} context={context} />}
+          {(context) => <Component {...props} context={context} />}
         </Context.Consumer>
       );
     }

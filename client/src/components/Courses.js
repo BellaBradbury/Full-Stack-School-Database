@@ -9,8 +9,8 @@ export default function Courses({ history }) {
     useEffect(() => {
         const coursesFind = async () => {
             await axios.get(config.apiBaseUrl + '/courses')
-                    .then((res) => {
-                        setCourses(res.data.courses);
+                    .then((response) => {
+                        setCourses(response.data.courses);
                     })
                     .catch((err) => {
                         history.push({
