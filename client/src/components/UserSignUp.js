@@ -74,6 +74,8 @@ export default class UserSignUp extends Component {
                 [name]: value
             };
         });
+
+        console.log(value);
     }
 
     submit = () => {
