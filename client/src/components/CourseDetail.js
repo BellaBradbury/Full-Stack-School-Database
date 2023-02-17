@@ -21,7 +21,7 @@ export default function CourseDetail({context, history}) {
                                                 error: error.message
                                             }});
                                     });
-            setCourse(courseInfo);
+            setCourse(courseInfo.data);
              if (setCourse.data === null) {
                 history.push('/notfound');
             } else {
