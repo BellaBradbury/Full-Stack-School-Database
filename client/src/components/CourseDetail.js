@@ -13,7 +13,7 @@ export default function CourseDetail({context, history}) {
 
     useEffect(() => {
         const courseFind = async () => {
-            const course = await axios(config.apiBaseUrl + '/courses/' + id)
+            const courseInfo = await axios(config.apiBaseUrl + '/courses/' + id)
                                     .catch((error) => {
                                         history.push({
                                             pathname: '/error', 
@@ -21,9 +21,8 @@ export default function CourseDetail({context, history}) {
                                                 error: error.message
                                             }});
                                     });
-
-            setCourse(course.data);
-            if (setCourse.data === null) {
+            setCourse(courseInfo.data);
+             if (setCourse.data === null) {
                 history.push('/notfound');
             } else {
                 setIsLoaded(true);
@@ -34,7 +33,7 @@ export default function CourseDetail({context, history}) {
 
     const courseDelete = () => {
         if (authenticatedUser !== null) {
-            context.actions.courseDelete(id, authenticatedUser.user.emailAddress, authenticatedUser.user.password)
+            context.actions.courseDelete(id, authenticatedUser.emailAddress, authenticatedUser.password)
                             .then((response) => {
                                 if (response.status === 204) {
                                     history.push('/');
@@ -56,14 +55,14 @@ export default function CourseDetail({context, history}) {
             <div>
                 <div className='actions--bar'>
                     <div className='wrap'>
-                        {authenticatedUser && authenticatedUser.emailAddress === course.emailAddress ? 
-                            <>
-                                <Link to={`/courses/${course.id}/update`} className='button'>Update Course</Link>
-                                <button className='button' onClick={courseDelete}>Delete Course</button>
-                            </>
-                            :
+                        {authenticatedUser !== null && authenticatedUser.id === course.teacher.id ? (
+                             <>
+                             <Link to={`/courses/${course.id}/update`} className='button'>Update Course</Link>
+                             <button className='button' onClick={courseDelete}>Delete Course</button>
+                         </>
+                        ) : (
                             <></>
-                        }
+                        )}
                         <Link to={'/'} className='button button-secondary'>Return to Courses List</Link>
                     </div>
                 </div>
