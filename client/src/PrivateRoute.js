@@ -1,17 +1,17 @@
 import React from "react";
-import {Route, NavLink} from 'react-router-dom';
+import {Route, Redirect} from 'react-router-dom';
 import {Consumer} from './Context';
 
 export default function PrivateRoute ({ component: Component, ...rest }) {
     return (
         <Consumer>
-            {context => (
+            {(context) => (
                 <Route
                     {...rest}
-                    render={props => context.authenticatedUser ? (
+                    render={(props) => context.authenticatedUser ? (
                         <Component {...props} />
                     ) : (
-                        <NavLink to={{
+                        <Redirect to={{
                             pathname: '/signin',
                             state: {from: props.location}
                         }}  />

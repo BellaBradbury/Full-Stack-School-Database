@@ -33,7 +33,7 @@ export default class CreateCourse extends Component {
         } = this.props;
 
         const courseInfo = { title, description, estimatedTime, materialsNeeded, userId: id, emailAddress }
-        context.actions.CreateCourse(courseInfo, emailAddress, password)
+        context.actions.createCourse(courseInfo, emailAddress, password)
                        .then((errors) => {
                             this.setState((errors) => {
                                 if (errors.length) {

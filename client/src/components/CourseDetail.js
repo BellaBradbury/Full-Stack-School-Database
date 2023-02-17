@@ -21,7 +21,7 @@ export default function CourseDetail({context, history}) {
                                                 error: error.message
                                             }});
                                     });
-            setCourse(courseInfo.data);
+            setCourse(courseInfo);
              if (setCourse.data === null) {
                 history.push('/notfound');
             } else {
@@ -31,11 +31,12 @@ export default function CourseDetail({context, history}) {
         courseFind();
     }, [id, history]);
 
-    const courseDelete = () => {
+    const deleteCourse = () => {
         if (authenticatedUser !== null) {
-            context.actions.courseDelete(id, authenticatedUser.emailAddress, authenticatedUser.password)
+            context.actions.deleteCourse(id, authenticatedUser.emailAddress, authenticatedUser.password)
                             .then((response) => {
                                 if (response.status === 204) {
+                                    console.log('Course successfully deleted.');
                                     history.push('/');
                                 }
                             })
@@ -51,6 +52,7 @@ export default function CourseDetail({context, history}) {
     }
 
     if (isLoaded) {
+        console.log(course.id);
         return (
             <div>
                 <div className='actions--bar'>
@@ -58,7 +60,7 @@ export default function CourseDetail({context, history}) {
                         {authenticatedUser !== null && authenticatedUser.id === course.teacher.id ? (
                              <>
                              <Link to={`/courses/${course.id}/update`} className='button'>Update Course</Link>
-                             <button className='button' onClick={courseDelete}>Delete Course</button>
+                             <button className='button' onClick={deleteCourse}>Delete Course</button>
                          </>
                         ) : (
                             <></>
