@@ -1,11 +1,11 @@
-// IMPORTED FUNCTIONS & MODULES
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Form from './Form';
 
 export default class UserSignUp extends Component {
     state = {
-        name: '',
+        firstName: '',
+        lastName: '',
         username: '',
         password: '',
         errors: [],
@@ -13,7 +13,8 @@ export default class UserSignUp extends Component {
 
     render() {
         const {
-            name,
+            firstName,
+            lastName,
             username,
             password,
             errors,
@@ -30,12 +31,19 @@ export default class UserSignUp extends Component {
                     elements={() => (
                         <React.Fragment>
                             <input 
-                                id='name'
-                                name='name'
+                                id='firstName'
+                                name='firstName'
                                 type='text'
-                                value={name}
+                                value={firstName}
                                 onChange={this.change}
-                                placeholder='Name' />
+                                placeholder='First Name' />
+                            <input 
+                                id='lastName'
+                                name='lastname'
+                                type='text'
+                                value={lastName}
+                                onChange={this.change}
+                                placeholder='Last Name' />
                             <input 
                                 id='username'
                                 name='username'
@@ -71,13 +79,15 @@ export default class UserSignUp extends Component {
     submit = () => {
         const {context} = this.props;
         const {
-            name,
+            firstName,
+            lastName,
             username,
             password,
         } = this.state;
 
         const user = {
-            name,
+            firstName,
+            lastName,
             username,
             password,
         };
@@ -89,7 +99,7 @@ export default class UserSignUp extends Component {
                 } else {
                     context.actions.signIn(username, password)
                         .then(() => {
-                            this.props.history.push('/authenticated');
+                            this.props.history.push('/');
                         });
                 }
             })
