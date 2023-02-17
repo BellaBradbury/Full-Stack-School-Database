@@ -33,7 +33,7 @@ export default class UserSignIn extends Component {
                                 type="text"
                                 value={emailAddress}
                                 onChange={this.change}
-                                placeholder="User Name" />
+                                placeholder="Email Address" />
                             <input
                                 id="password"
                                 name="password"
