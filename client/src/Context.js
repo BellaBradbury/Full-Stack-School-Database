@@ -63,6 +63,7 @@ export class Provider extends Component {
             return {authenticatedUser: null};
         });
         Cookies.remove('authenticatedUser');
+        console.log('User has been signed out!');
     }
 
     signUp = async (firstName, lastName, emailAddress, password) => {
