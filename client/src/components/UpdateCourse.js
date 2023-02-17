@@ -21,10 +21,10 @@ export default class UpdateCourse extends Component {
     submit = () => {
         const {context} = this.props;
         const {from} = this.props.location.state || {from: {pathname: '/authenticated'}};
-        const {username, password} = this.state;
+        const {emailAddress, password} = this.state;
         const {course} = this.state;
 
-        context.actions.updateCourse(course, username, password)
+        context.actions.updateCourse(course, emailAddress, password)
             .then((user) => {
                 if(user === null) {
                     this.setState(() => {

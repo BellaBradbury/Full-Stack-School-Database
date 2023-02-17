@@ -39,8 +39,8 @@ export class Provider extends Component {
         );
     }
 
-    signIn = async (username, password) => {
-        const user = await this.data.getUser(username, password);
+    signIn = async (emailAddress, password) => {
+        const user = await this.data.getUser(emailAddress, password);
         if (user !== null) {
             this.setState(() => {
                 return {
@@ -84,28 +84,28 @@ export class Provider extends Component {
         }
     }
 
-    createCourse = async (course, username, password) => {
+    createCourse = async (course, emailAddress, password) => {
         const courseInfo = await this.data.createCourse(
             course, 
-            username,
+            emailAddress,
             password
         );
         return courseInfo;
     }
 
-    updateCourse = async (course, username, password) => {
+    updateCourse = async (course, emailAddress, password) => {
         const courseInfo = await this.data.updateCourse(
             course, 
-            username,
+            emailAddress,
             password
         );
         return courseInfo;
     }
 
-    deleteCourse = async (course, username, password) => {
+    deleteCourse = async (course, emailAddress, password) => {
         const courseInfo = await this.data.deleteCourse(
             course, 
-            username,
+            emailAddress,
             password
         );
         return courseInfo;

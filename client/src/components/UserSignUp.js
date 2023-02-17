@@ -6,7 +6,7 @@ export default class UserSignUp extends Component {
     state = {
         firstName: '',
         lastName: '',
-        username: '',
+        emailAddress: '',
         password: '',
         errors: [],
     }
@@ -15,7 +15,7 @@ export default class UserSignUp extends Component {
         const {
             firstName,
             lastName,
-            username,
+            emailAddress,
             password,
             errors,
         } = this.state;
@@ -45,12 +45,12 @@ export default class UserSignUp extends Component {
                                 onChange={this.change}
                                 placeholder='Last Name' />
                             <input 
-                                id='username'
-                                name='username'
+                                id='emailAddress'
+                                name='emailAddress'
                                 type='text'
-                                value={username}
+                                value={emailAddress}
                                 onChange={this.change}
-                                placeholder='User Name' />
+                                placeholder='Email Address' />
                             <input 
                                 id='password'
                                 name='password'
@@ -81,14 +81,14 @@ export default class UserSignUp extends Component {
         const {
             firstName,
             lastName,
-            username,
+            emailAddress,
             password,
         } = this.state;
 
         const user = {
             firstName,
             lastName,
-            username,
+            emailAddress,
             password,
         };
 
@@ -97,7 +97,7 @@ export default class UserSignUp extends Component {
                 if (errors.length) {
                     this.setState({errors});
                 } else {
-                    context.actions.signIn(username, password)
+                    context.actions.signIn(emailAddress, password)
                         .then(() => {
                             this.props.history.push('/');
                         });

@@ -20,7 +20,7 @@ export default class Data {
 
         // encodes user credentials
         if (requiresAuth) {
-            const encodedCredentials = btoa(`${credentials.username}:${credentials.password}`);
+            const encodedCredentials = btoa(`${credentials.emailAddress}:${credentials.password}`);
             options.headers['Authorization'] = `Basic ${encodedCredentials}`;
         }
 
@@ -28,8 +28,8 @@ export default class Data {
     }
 
     // GET USER from database
-    async getUser(username, password) {
-        const response = await this.api('/users', 'GET', null, true, {username, password});
+    async getUser(emailAddress, password) {
+        const response = await this.api('/users', 'GET', null, true, {emailAddress, password});
         if (response.status === 200) {
             console.log('User validated!');
             return response.json().then(data => data);
@@ -58,8 +58,8 @@ export default class Data {
     }
 
     // POST COURSES to database
-    async createCourse(course, username, password) {
-        const response = await this.api('/courses', 'Post', course, true, {username, password});
+    async createCourse(course, emailAddress, password) {
+        const response = await this.api('/courses', 'Post', course, true, {emailAddress, password});
         if (response.status === 201) {
             console.log('Course created!');
             return [];
@@ -74,8 +74,8 @@ export default class Data {
     }
 
     // PUT COURSE to update database
-    async updateCourse(course, username, password) {
-        const response = await this.api('/courses', 'PUT', course, true, {username, password});
+    async updateCourse(course, emailAddress, password) {
+        const response = await this.api('/courses', 'PUT', course, true, {emailAddress, password});
         if (response.status === 204) {
             console.log('Course updated!');
             return [];
@@ -90,8 +90,8 @@ export default class Data {
     }
 
     // DELETE COURSE from database
-    async deleteCourse(course, username, password) {
-        const response = await this.api('/courses', 'DELETE', course, true, {username, password});
+    async deleteCourse(course, emailAddress, password) {
+        const response = await this.api('/courses', 'DELETE', course, true, {emailAddress, password});
         if (response.status === 204) {
             console.log('Course deleted!');
             return [];

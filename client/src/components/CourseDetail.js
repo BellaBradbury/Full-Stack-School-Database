@@ -56,7 +56,7 @@ export default function CourseDetail({context, history}) {
             <div>
                 <div className='actions--bar'>
                     <div className='wrap'>
-                        {authenticatedUser && authenticatedUser.emailAddress === course.user.emailAddress ? 
+                        {authenticatedUser && authenticatedUser.emailAddress === course.emailAddress ? 
                             <>
                                 <Link to={`/courses/${course.id}/update`} className='button'>Update Course</Link>
                                 <button className='button' onClick={courseDelete}>Delete Course</button>
