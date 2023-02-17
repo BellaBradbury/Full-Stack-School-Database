@@ -12,7 +12,6 @@ export default function Courses({ history }) {
             await axios.get(config.apiBaseUrl + '/courses')
                     .then((response) => {
                         setCourses(response.data);
-                        console.log(coursesData);
                     })
                     .catch((err) => {
                         history.push({
@@ -44,5 +43,5 @@ export default function Courses({ history }) {
                 New Course </span>
             </Link>
         </div>
-    )
+    );
 }

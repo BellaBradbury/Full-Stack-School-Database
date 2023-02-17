@@ -64,7 +64,7 @@ export default function CourseDetail({context, history}) {
                             :
                             <></>
                         }
-                        <Link to={'/courses'} className='button button-secondary'>Return to Courses List</Link>
+                        <Link to={'/'} className='button button-secondary'>Return to Courses List</Link>
                     </div>
                 </div>
                 <div className='wrap'>

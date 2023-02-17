@@ -35,8 +35,8 @@ const ForbiddenWithContext = withContext(Forbidden);
 function App() {
     return(
         <Router>
-            <div>
-                <HeaderWithContext />
+            <HeaderWithContext />
+            <main>
                 <Switch>
                     <Route exact path='/' component={Courses} />
                     <Route path='/courses/:id' component={CourseDetailWithContext} />
@@ -50,7 +50,7 @@ function App() {
                     <Route path='/forbidden' component={ForbiddenWithContext} />
                     <Route path='/error' component={Error} />
                 </Switch>
-            </div>
+            </main>
         </Router>
     );
 };

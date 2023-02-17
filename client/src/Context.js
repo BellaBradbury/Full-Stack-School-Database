@@ -47,7 +47,7 @@ export class Provider extends Component {
                     authenticatedUser: user,
                 };
             });
-            user.user.password = password;
+            user.password = password;
 
             const cookieOptions = {
                 expires: 1
