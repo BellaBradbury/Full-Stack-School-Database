@@ -45,6 +45,7 @@ function App() {
             <main>
                 <Switch>
                     <Route exact path='/' component={Courses} />
+                    <Route exact path='/courses' component={Courses} />
                     <Route path='/signUp' component={UserSignUpWithContext} />
                     <Route path='/signIn' component={UserSignInWithContext} />
                     <Route path='/signOut' component={UserSignOutWithContext} />
