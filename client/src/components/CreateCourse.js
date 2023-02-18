@@ -19,12 +19,13 @@ export default class CreateCourse extends Component {
                 [name]: value
             }
         });
+        console.log(value);
     }
 
     submit = () => {
         const {context} = this.props;
         const {title, description, estimatedTime, materialsNeeded} = this.state;
-        
+                
         const {
             context: {
                 authenticatedUser: {
@@ -59,7 +60,6 @@ export default class CreateCourse extends Component {
 
     render() {
         const {title, description, estimatedTime, materialsNeeded, errors} = this.state;
-        console.log(Form);
        return (
             <div className='wrap'>
                 <h2>Create Course</h2>
