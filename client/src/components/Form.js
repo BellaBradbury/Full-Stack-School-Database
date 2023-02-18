@@ -1,6 +1,7 @@
-// IMPORTED FUNCTIONS & MODULES
+// MODULES
 import React from 'react';
 
+// PROVIDES STRUCTURE FOR APP FORMS
 export default function Form ({
         cancel,
         errors,
@@ -18,6 +19,7 @@ export default function Form ({
         cancel();
     }
 
+    // shows form and buttons, shows errors if applicable
     return (
         <div>
             <DisplayErrors errors={errors} />
@@ -30,6 +32,7 @@ export default function Form ({
     );
 }
 
+// USES COLLECTED ERRORS TO DISPLAY FOR USER INPUT VALIDATION
 function DisplayErrors({ errors }) {
     let displayErrors = null;
 

@@ -1,13 +1,16 @@
-// IMPORTED FUNCTIONS & MODULES
+// FUNCTIONS & MODULES
 import React from 'react';
 import {
     BrowserRouter as Router,
     Route,
     Switch
 } from 'react-router-dom';
+
+// STYLESHEETS
 import './styles/global.css';
 import './styles/reset.css';
 
+// COMPONENTS
 import Header from './components/Header';
 import Courses from './components/Courses';
 import NotFound from './components/NotFound';
@@ -20,9 +23,11 @@ import UpdateCourse from './components/UpdateCourse';
 import Error from './components/Error';
 import Forbidden from './components/Forbidden';
 
+// FUNCTIONS TO USE WITH COMPONENTS
 import withContext from './Context';
 import PrivateRoute from './PrivateRoute';
 
+// COMPONENTS WITH CONTEXT
 const HeaderWithContext = withContext(Header);
 const UserSignUpWithContext = withContext(UserSignUp);
 const UserSignInWithContext = withContext(UserSignIn);
@@ -32,6 +37,7 @@ const CourseDetailWithContext = withContext(CourseDetail);
 const CourseUpdateWithContext = withContext(UpdateCourse);
 const ForbiddenWithContext = withContext(Forbidden);
 
+// APP STRUCTURE OF ROUTES & COMPONENTS
 function App() {
     return(
         <Router>
@@ -39,7 +45,6 @@ function App() {
             <main>
                 <Switch>
                     <Route exact path='/' component={Courses} />
-                    
                     <Route path='/signUp' component={UserSignUpWithContext} />
                     <Route path='/signIn' component={UserSignInWithContext} />
                     <Route path='/signOut' component={UserSignOutWithContext} />
@@ -47,7 +52,6 @@ function App() {
                     <PrivateRoute path='/courses/:id/update' component={CourseUpdateWithContext} />
                     <Route path='/courses/:id' component={CourseDetailWithContext} />
                     <Route path='/notfound' component={NotFound} />
-                    
                     <Route path='/forbidden' component={ForbiddenWithContext} />
                     <Route path='/error' component={Error} />
                     <Route path='*' component={NotFound} />
@@ -58,52 +62,3 @@ function App() {
 };
 
 export default App;
-
-
-
-
-
-
-// import logo from './logo.svg';
-// import './App.css';
-// import React, { useState } from 'react';
-// import axios from 'axios';
-
-
-
-// // import Header from './components/Header';
-// // import UserSignOut from './components/UserSignOut';
-
-// const App = () => {
-//   const [courses, setCourses] = useState();
-
-//   axios.get('http://localhost:5000/api/courses')
-//        .then( response => {
-//           setCourses(response.data);
-//           console.log(response.data);
-//        })
-//        .catch(error => {
-//         console.log('Error fetching and parsing request', error);
-//        });
-
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default App;

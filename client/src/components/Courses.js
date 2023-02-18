@@ -1,12 +1,14 @@
-// IMPORTED FUNCTIONS & MODULES
+// FUNCTIONS & MODULES
 import React, {useEffect, useState} from 'react';
 import config from '../Config';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+// LANDING PAGE LISTING ALL COURSES TO ANY USER
 export default function Courses({ history }) {
     const [coursesData, setCourses] = useState([]);
 
+    // fetches course data from api
     useEffect(() => {
         const coursesFind = async () => {
             await axios.get(config.apiBaseUrl + '/courses')
@@ -23,6 +25,7 @@ export default function Courses({ history }) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    // maps all course data returned from fetch
     const courseTitles = coursesData.map((course) => {
         return (
             <Link className='course--module course--link' to={`/courses/${course.id}`} key={course.id}>
@@ -32,6 +35,7 @@ export default function Courses({ history }) {
         );
     });
 
+    // shows course title & links to detail page, create course button
     return (
         <div className='wrap main--grid'>
             {courseTitles}

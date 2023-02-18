@@ -1,9 +1,12 @@
-// IMPORTED FUNCTIONS & MODULES
+// FUNCTIONS & MODULES
 import React, {Component} from 'react';
-import Form from './Form';
 import axios from "axios";
 import config from "../Config";
 
+// COMPONENTS
+import Form from './Form';
+
+// ALLOWS USER TO UPDATE PERSONALLY OWNED COURSE
 export default class UpdateCourse extends Component {
     constructor(props) {
         super(props);
@@ -20,6 +23,7 @@ export default class UpdateCourse extends Component {
         }
     }
 
+    // checks to make sure that ids match course data is set
     componentDidMount() {
         const course = async () => {
             const { id } = this.props.match.params;
@@ -47,6 +51,7 @@ export default class UpdateCourse extends Component {
               
     }
 
+    // sets state of input field & updates in real-time
     change = (event) => {
         const name = event.target.name;
         const value = event.target.value;
@@ -62,6 +67,7 @@ export default class UpdateCourse extends Component {
         });
     }
 
+    // creates new user or displays errors based on user input
     submit = () => {
         const {
             context: {
@@ -84,10 +90,12 @@ export default class UpdateCourse extends Component {
     
     }
 
+    // redirects users to home page
     cancel = () => {
         this.props.history.push('/');
     }
 
+    // shows form to update and delete course to authorized user, update button, and cancel button
     render () {
         const {
             context: {

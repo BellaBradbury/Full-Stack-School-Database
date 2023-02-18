@@ -1,8 +1,11 @@
+// MODULES & FUNCTIONS
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Form from './Form';
 
+// COMPONENT TO SIGN UP A NEW USER
 export default class UserSignUp extends Component {
+    // define user poperty state
     state = {
         firstName: '',
         lastName: '',
@@ -12,6 +15,7 @@ export default class UserSignUp extends Component {
     }
 
     render() {
+        // uses user proptery state
         const {
             firstName,
             lastName,
@@ -20,6 +24,7 @@ export default class UserSignUp extends Component {
             errors,
         } = this.state;
 
+        // shows a signup form, sign up, cancel, and sign in buttons
         return (
             <div className='form--centered'>
                 <h2>Sign Up</h2>
@@ -65,6 +70,7 @@ export default class UserSignUp extends Component {
         );
     }
 
+    // sets state of input field & updates in real-time
     change = (event) => {
         const name = event.target.name;
         const value = event.target.value;
@@ -76,6 +82,7 @@ export default class UserSignUp extends Component {
         });
     }
 
+    // creates new user or displays errors based on user input
     submit = () => {
         const {context} = this.props;
         const {
@@ -109,6 +116,7 @@ export default class UserSignUp extends Component {
             });
     }
 
+    // redirects users to home page
     cancel = () => {
         this.props.history.push('/');
     }

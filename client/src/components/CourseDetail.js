@@ -1,16 +1,19 @@
-// IMPORTED FUNCTIONS & MODULES
+// FUNCTIONS & MODULES
 import React, {useEffect, useState} from 'react';
 import {Link, useParams} from 'react-router-dom';
 import config from '../Config';
 import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
 
+// PROVIDES IN DEPTH LOOK AT A SPECIFIC COURSE
 export default function CourseDetail({context, history}) {
+    // variables
     const {authenticatedUser} = context;
     const [course, setCourse] = useState({});
     const {id} = useParams();
     const [isLoaded, setIsLoaded] = useState(false);
 
+    // fetches course data from api
     useEffect(() => {
         const courseFind = async () => {
             const courseInfo = await axios(config.apiBaseUrl + '/courses/' + id)
@@ -31,6 +34,7 @@ export default function CourseDetail({context, history}) {
         courseFind();
     }, [id, history]);
 
+    // handles deletion of auth user owned course
     const deleteCourse = () => {
         if (authenticatedUser !== null) {
             context.actions.deleteCourse(id, authenticatedUser.emailAddress, authenticatedUser.password)
@@ -51,7 +55,10 @@ export default function CourseDetail({context, history}) {
         }
     }
 
+    // checks if course was found in data
     if (isLoaded) {
+        // shows update & delete buttons to auth user in owned course detail page
+            // shows courses list button, title, owner name, description, time, and material information to all users
         return (
             <div>
                 <div className='actions--bar'>
@@ -88,6 +95,7 @@ export default function CourseDetail({context, history}) {
             </div>
         );
     } else {
+        // shows course not found if course data does not exist
         return (
             <p>Course Was Not Found</p>
         );

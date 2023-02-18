@@ -1,3 +1,5 @@
+// PROVIDES A USER FRIENDLY WHEN USER IS ATTEMPTING
+    // TO ACCESS A PAGE THAT IS NOT AUTHORIZED FOR THEM
 export default function Forbidden({
     context: {
         authenticatedUser: {user}

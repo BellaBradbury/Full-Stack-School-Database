@@ -1,10 +1,16 @@
+// FUNCTIONS & MODULES
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from './Context';
 
+// COMPONENETS
+import App from './App';
+
+// STYLESHEETS
+import './index.css';
+
+// CREATES 'ROOT' ELEMENT & RENDERS APP COMPONENT
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider>

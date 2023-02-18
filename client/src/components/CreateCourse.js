@@ -1,8 +1,12 @@
-// IMPORTED FUNCTIONS & MODULES
+// FUNCTIONS & MODULES
 import React, {Component} from 'react';
+
+// COMPONENTS
 import Form from './Form';
 
+// COLLECTS USER INPUT TO CREATE A NEW COURSE
 export default class CreateCourse extends Component {
+    // defines the course property state
     state = {
         title: '',
         description: '',
@@ -11,6 +15,7 @@ export default class CreateCourse extends Component {
         errors: [],
     }
 
+    // sets state of input field & updates in real-time
     change = (event) => {
         const name = event.target.name;
         const value = event.target.value;
@@ -22,6 +27,7 @@ export default class CreateCourse extends Component {
         console.log(value);
     }
 
+    // creates new user or displays errors based on user input
     submit = () => {
         const {context} = this.props;
         const {title, description, estimatedTime, materialsNeeded} = this.state;
@@ -54,10 +60,12 @@ export default class CreateCourse extends Component {
                         });
     }
 
+    // redirects users to home page
     cancel = () => {
         this.props.history.push('/');
     }
 
+    // shows form that validates user input, display errors when needed, and create & cancel buttons
     render() {
         const {title, description, estimatedTime, materialsNeeded, errors} = this.state;
        return (

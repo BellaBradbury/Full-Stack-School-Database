@@ -1,4 +1,4 @@
-// IMPORTED FUNCTIONS & MODULES
+// FUNCTIONS & MODULES
 import React, { Component } from 'react';
 import Cookies from 'js-cookie';
 import Data from './Data';
@@ -6,7 +6,9 @@ import Data from './Data';
 // VARIABLES
 const Context = React.createContext();
 
+// USE DATA TO ASSIST OTHER APP FUNCTIONS
 export class Provider extends Component { 
+    // create & manage cookie data for users
     constructor() {
         super();
         this.data = new Data();
@@ -17,6 +19,7 @@ export class Provider extends Component {
         };
     }
 
+    // define usable actions
     render() {
         const {authenticatedUser} = this.state;
         const value = {
@@ -31,7 +34,6 @@ export class Provider extends Component {
                 deleteCourse: this.deleteCourse
             },
         };
-
         return (
             <Context.Provider value={value}>
                 {this.props.children}
@@ -39,6 +41,7 @@ export class Provider extends Component {
         );
     }
 
+    // action to find user using "getUser" method, sign in, and set cookies
     signIn = async (emailAddress, password) => {
         const user = await this.data.getUser(emailAddress, password);
         if (user !== null) {
@@ -58,6 +61,7 @@ export class Provider extends Component {
         return user;
     }
 
+    // action to sign out user and remove cookies
     signOut = () => {
         this.setState(() => {
             return {authenticatedUser: null};
@@ -66,6 +70,7 @@ export class Provider extends Component {
         console.log('User has been signed out!');
     }
 
+    // action to sign up a new user using "createUser" method
     signUp = async (firstName, lastName, emailAddress, password) => {
         const userInfo = {
             firstName,
@@ -84,6 +89,7 @@ export class Provider extends Component {
         }
     }
 
+    // action to create a course using "createCourse" method
     createCourse = async (course, emailAddress, password) => {
         const courseInfo = await this.data.createCourse(
             course, 
@@ -93,6 +99,7 @@ export class Provider extends Component {
         return courseInfo;
     }
 
+    // action to update a course using "updateCourse" method
     updateCourse = async (course, emailAddress, password) => {
         const courseInfo = await this.data.updateCourse(
             course, 
@@ -102,6 +109,7 @@ export class Provider extends Component {
         return courseInfo;
     }
 
+    // action to delete course using "deleteCourse" method
     deleteCourse = async (course, emailAddress, password) => {
         const courseInfo = await this.data.deleteCourse(
             course, 
@@ -114,6 +122,7 @@ export class Provider extends Component {
 
 export const Consumer = Context.Consumer;
 
+// ALLOWS A COMPONENT TO USE CONTEXT
 export default function withContext(Component) {
     return function ContextComponent(props) {
       return (

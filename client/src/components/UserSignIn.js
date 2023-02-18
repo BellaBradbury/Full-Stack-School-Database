@@ -1,15 +1,20 @@
-// IMPORTED FUNCTIONS & MODULES
+// FUNCTIONS & MODULES
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+
+// COMPONENTS
 import Form from './Form';
 
+// PROVIDES FORM AND HANDLES USER INPUT WHEN SIGNING IN
 export default class UserSignIn extends Component {
+    // define user property state
     state = {
         emailAddress: '',
         password: '',
         errors: [],
     }
 
+    // shows form for users to submit prior credentials, sign in button, cancel button, and sign up button
     render() {
         const {
             emailAddress,
@@ -48,6 +53,7 @@ export default class UserSignIn extends Component {
         );
     }
 
+    // sets state of input field & updates in real-time
     change = (event) => {
         const name = event.target.name;
         const value = event.target.value;
@@ -59,6 +65,7 @@ export default class UserSignIn extends Component {
         });
     }
 
+    // creates new user or displays errors based on user input
     submit = () => {
         const {context} = this.props;
         const {from} = this.props.location.state || {from: {pathname: '/'}};
@@ -80,6 +87,7 @@ export default class UserSignIn extends Component {
             });
     }
 
+    // redirects users to home page
     cancel = () => {
         this.props.history.push('/');
     }

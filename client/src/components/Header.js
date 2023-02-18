@@ -1,8 +1,10 @@
-// IMPORTED FUNCTIONS & MODULES
+// FUNCTIONS & MODULES
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+// HEADER UPDATES BASED ON USER AUTHENTICATION
 export default class Header extends React.PureComponent {
+    // courses link always available, sign in or out links based on current authorization
     render() {
         const {context} = this.props;
         const authUser = context.authenticatedUser;
