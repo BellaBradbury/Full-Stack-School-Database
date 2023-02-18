@@ -52,7 +52,6 @@ export default function CourseDetail({context, history}) {
     }
 
     if (isLoaded) {
-        console.log(course.id);
         return (
             <div>
                 <div className='actions--bar'>

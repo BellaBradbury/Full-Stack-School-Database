@@ -7,7 +7,6 @@ import config from "../Config";
 export default class UpdateCourse extends Component {
     constructor(props) {
         super(props);
-        console.log(props);
         this.state = {
             isLoaded: false,
             course: {
@@ -26,15 +25,15 @@ export default class UpdateCourse extends Component {
             const { id } = this.props.match.params;
             await axios(config.apiBaseUrl + "/courses/" + id)
               .then((response) => {
-                if (response.data.course == null) {
+                if (response.data == null) {
                   this.props.history.push("/notfound");
                 } else if (
-                  response.data.course.user.emailAddress !==
-                  this.props.context.authenticatedUser.user.emailAddress
+                  response.data.teacher.emailAddress !==
+                  this.props.context.authenticatedUser.emailAddress
                 ) {
                   this.props.history.push("/forbidden");
                 } else {
-                  this.setState({ course: response.data.course });
+                  this.setState({ course: response.data });
                 }
               })
               .catch((error) => {
@@ -66,15 +65,15 @@ export default class UpdateCourse extends Component {
     submit = () => {
         const {
             context: {
-                authenticatedUser: {user},
+                authenticatedUser
             },
         } = this.props;
+        console.log(this.props);
         // const {context} = this.props;
         // const {from} = this.props.location.state || {from: {pathname: '/'}};
         // const {emailAddress, password} = this.state;
         const {course} = this.state;
-        console.log(course);
-        this.props.context.actions.updateCourse(course, user.emailAddress, user.password)
+        this.props.context.actions.updateCourse(course, authenticatedUser.emailAddress, authenticatedUser.password)
             .then((errors) => {
                 if (errors.length) {
                     this.setState({errors});

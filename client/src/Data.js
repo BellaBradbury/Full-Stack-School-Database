@@ -75,7 +75,7 @@ export default class Data {
 
     // PUT COURSE to update database
     async updateCourse(course, emailAddress, password) {
-        const response = await this.api('/courses', 'PUT', course, true, {emailAddress, password});
+        const response = await this.api('/courses/' + course.id, 'PUT', course, true, {emailAddress, password});
         if (response.status === 204) {
             console.log('Course updated!');
             return [];
