@@ -7,6 +7,7 @@ import config from "../Config";
 export default class UpdateCourse extends Component {
     constructor(props) {
         super(props);
+        console.log(props);
         this.state = {
             course: {
                 title: '',
@@ -42,6 +43,7 @@ export default class UpdateCourse extends Component {
               });
             }
               course();
+              
     }
 
     change = (event) => {
