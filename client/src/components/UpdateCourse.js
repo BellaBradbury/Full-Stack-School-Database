@@ -9,6 +9,7 @@ export default class UpdateCourse extends Component {
         super(props);
         console.log(props);
         this.state = {
+            isLoaded: false,
             course: {
                 title: '',
                 description: '',
@@ -16,10 +17,11 @@ export default class UpdateCourse extends Component {
                 materialsNeeded: '',
             },
             errors: [],
+            authorized: false
         }
     }
 
-    checkCourse() {
+    componentDidMount() {
         const course = async () => {
             const { id } = this.props.match.params;
             await axios(config.apiBaseUrl + "/courses/" + id)
@@ -28,7 +30,7 @@ export default class UpdateCourse extends Component {
                   this.props.history.push("/notfound");
                 } else if (
                   response.data.course.user.emailAddress !==
-                  this.props.context.authenticatedUser.emailAddress
+                  this.props.context.authenticatedUser.user.emailAddress
                 ) {
                   this.props.history.push("/forbidden");
                 } else {
@@ -71,7 +73,7 @@ export default class UpdateCourse extends Component {
         // const {from} = this.props.location.state || {from: {pathname: '/'}};
         // const {emailAddress, password} = this.state;
         const {course} = this.state;
-
+        console.log(course);
         this.props.context.actions.updateCourse(course, user.emailAddress, user.password)
             .then((errors) => {
                 if (errors.length) {
@@ -88,11 +90,11 @@ export default class UpdateCourse extends Component {
     }
 
     render () {
-        // const {
-        //     context: {
-        //         authenticatedUser: {user},
-        //     },
-        // } = this.props;
+        const {
+            context: {
+                authenticatedUser
+            },
+        } = this.props;
         const {title, description, estimatedTime, materialsNeeded} = this.state.course;
 
         return(
@@ -104,7 +106,7 @@ export default class UpdateCourse extends Component {
                             <div className='main--flex'>
                                 <label htmlFor='courseTitle'>Course Title</label>
                                 <input id='CourseTitle' name='CourseTitle' type='text' value={title} onChange={this.change} />
-                                <p>By {this.props.context.authenticatedUser.firstName} {this.props.context.authenticatedUser.lastName}</p>
+                                <p>By {authenticatedUser.firstName} {authenticatedUser.lastName}</p>
 
                                 <label htmlFor='courseDescription'>Course Description</label>
                                 <textarea id='courseDescription' name='courseDescription' value={description} onChange={this.change} />
