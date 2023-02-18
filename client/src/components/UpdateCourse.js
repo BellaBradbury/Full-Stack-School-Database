@@ -88,11 +88,11 @@ export default class UpdateCourse extends Component {
     }
 
     render () {
-        const {
-            context: {
-                authenticatedUser: {user},
-            },
-        } = this.props;
+        // const {
+        //     context: {
+        //         authenticatedUser: {user},
+        //     },
+        // } = this.props;
         const {title, description, estimatedTime, materialsNeeded} = this.state.course;
 
         return(
@@ -104,7 +104,7 @@ export default class UpdateCourse extends Component {
                             <div className='main--flex'>
                                 <label htmlFor='courseTitle'>Course Title</label>
                                 <input id='CourseTitle' name='CourseTitle' type='text' value={title} onChange={this.change} />
-                                <p>By {user.firstName} {user.lastName}</p>
+                                <p>By {this.props.context.authenticatedUser.firstName} {this.props.context.authenticatedUser.lastName}</p>
 
                                 <label htmlFor='courseDescription'>Course Description</label>
                                 <textarea id='courseDescription' name='courseDescription' value={description} onChange={this.change} />
