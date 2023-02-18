@@ -24,6 +24,7 @@ export default class CreateCourse extends Component {
     submit = () => {
         const {context} = this.props;
         const {title, description, estimatedTime, materialsNeeded} = this.state;
+        console.log(context);
         const {
             context: {
                 authenticatedUser: {
@@ -59,11 +60,6 @@ export default class CreateCourse extends Component {
 
     render() {
         const {title, description, estimatedTime, materialsNeeded, errors} = this.state;
-        const {
-            context: {
-                authenticatedUser: {user},
-            },
-        } = this.props;
 
        return (
             <div className='wrap'>
@@ -74,7 +70,7 @@ export default class CreateCourse extends Component {
                             <div className='main--flex'>
                                 <label htmlFor='courseTitle'>Course Title</label>
                                 <input id='CourseTitle' name='CourseTitle' type='text' value={title} onChange={this.change} />
-                                <p>By {user.firstName} {user.lastName}</p>
+                                <p>By {this.props.context.authenticatedUser.firstName} {this.props.context.authenticatedUser.lastName}</p>
 
                                 <label htmlFor='courseDescription'>Course Description</label>
                                 <textarea id='courseDescription' name='courseDescription' value={description} onChange={this.change} />
