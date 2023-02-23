@@ -7,8 +7,8 @@ import {
 } from 'react-router-dom';
 
 // STYLESHEETS
-import './styles/global.css';
 import './styles/reset.css';
+import './styles/global.css';
 
 // COMPONENTS
 import Header from './components/Header';

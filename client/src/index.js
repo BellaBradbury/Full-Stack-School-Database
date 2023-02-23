@@ -8,8 +8,8 @@ import {Provider} from './Context';
 import App from './App';
 
 // STYLESHEETS
-import './styles/global.css';
 import './styles/reset.css';
+import './styles/global.css';
 
 // CREATES 'ROOT' ELEMENT & RENDERS APP COMPONENT
 const root = ReactDOM.createRoot(document.getElementById('root'));
