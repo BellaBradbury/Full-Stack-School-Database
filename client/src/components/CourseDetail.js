@@ -43,10 +43,7 @@ export default function CourseDetail({context, history}) {
         if (authenticatedUser !== null) {
             context.actions.deleteCourse(course, authenticatedUser.emailAddress, authenticatedUser.password)
                             .then((response) => {
-                                if (response.status === 204) {
-                                    console.log('Course successfully deleted.');
-                                    this.props.history.push('/');
-                                }
+                                history.push({ pathname: '/' });
                             })
                             .catch((error) => {
                                 history.push({
