@@ -22,7 +22,7 @@ export default class CreateCourse extends Component {
         const title = document.getElementById('CourseTitle').value;
         const description = document.getElementById('courseDescription').value;
         const estimatedTime = document.getElementById('estimatedTime').value;
-
+        
         const {
             context: {
                 authenticatedUser: {
@@ -58,7 +58,7 @@ export default class CreateCourse extends Component {
     // shows form that validates user input, display errors when needed, and create & cancel buttons
     render() {
         const {title, description, estimatedTime, materialsNeeded, errors} = this.state;
-
+        
         return (
             <div className='wrap'>
                 <h2>Create Course</h2>

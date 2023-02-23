@@ -91,7 +91,8 @@ export default class UpdateCourse extends Component {
                                         } else {
                                             this.props.history.push('/');
                                         }
-                                    });
+                                    })
+                                    
     }
 
     // redirects users to home page
@@ -107,6 +108,7 @@ export default class UpdateCourse extends Component {
             },
         } = this.props;
         const {title, description, estimatedTime, materialsNeeded} = this.state.course;
+        console.log(this.state.errors);
         return(
             <div className='wrap'>
                 <h2>Update Course</h2>
