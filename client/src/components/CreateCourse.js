@@ -15,18 +15,6 @@ export default class CreateCourse extends Component {
         errors: [],
     }
 
-    // sets state of input field & updates in real-time
-    // change = (event) => {
-    //     const name = event.target.name;
-    //     const value = event.target.value;
-    //     this.setState(() => {
-    //         return {
-    //             [name]: value
-    //         }
-    //     });
-    //     console.log(value);
-    // }
-
     // creates new user or displays errors based on user input
     submit = () => {
         const {context} = this.props;
