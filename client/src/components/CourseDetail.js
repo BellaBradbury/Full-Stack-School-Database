@@ -34,10 +34,11 @@ export default function CourseDetail({context, history}) {
         courseFind();
     }, [id, history]);
 
+    console.log(course.id);
     // handles deletion of auth user owned course
-    const deleteCourse = () => {
+    const deleteCourse = async () => {
         if (authenticatedUser !== null) {
-            context.actions.deleteCourse(id, authenticatedUser.emailAddress, authenticatedUser.password)
+            context.actions.deleteCourse(course.id, authenticatedUser.emailAddress, authenticatedUser.password)
                             .then((response) => {
                                 if (response.status === 204) {
                                     console.log('Course successfully deleted.');
