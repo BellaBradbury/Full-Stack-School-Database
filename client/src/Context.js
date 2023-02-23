@@ -44,6 +44,7 @@ export class Provider extends Component {
     // action to find user using "getUser" method, sign in, and set cookies
     signIn = async (emailAddress, password) => {
         const user = await this.data.getUser(emailAddress, password);
+
         if (user !== null) {
             this.setState(() => {
                 return {
@@ -55,7 +56,6 @@ export class Provider extends Component {
             const cookieOptions = {
                 expires: 1
             };
-            
             Cookies.set('authenticatedUser', JSON.stringify(user), cookieOptions);
         }
         return user;
@@ -67,6 +67,7 @@ export class Provider extends Component {
             return {authenticatedUser: null};
         });
         Cookies.remove('authenticatedUser');
+        
         console.log('User has been signed out!');
     }
 

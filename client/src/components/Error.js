@@ -3,7 +3,6 @@ import React from 'react';
 
 // PROVIDES A USER FRIENDLY LISTING 500 ERRORS
 export default function Error(props) {
-    console.log(props);
     const {error} =  props.location.state;
 
     return (

@@ -32,7 +32,8 @@ export default class Data {
         const response = await this.api('/users', 'GET', null, true, {emailAddress, password});
         if (response.status === 200) {
             console.log('User validated!');
-            return response.json().then(data => data);
+            return response.json()
+                            .then(data => data);
         } else if (response.status === 401) {
             console.log('User could not be validated.');
             return null;
@@ -49,7 +50,8 @@ export default class Data {
             return [];
         } else if (response.status === 400) {
             console.log('User could not be created.');
-            return response.json().then(data => {
+            return response.json()
+                            .then(data => {
                 return data.errors;
             });
         } else {
@@ -65,7 +67,8 @@ export default class Data {
             return [];
         } else if (response.status === 400) {
             console.log('Course could not be created.');
-            return response.json().then(data => {
+            return response.json()
+                            .then(data => {
                 return data.errors;
             });
         } else {
@@ -81,7 +84,8 @@ export default class Data {
             return [];
         } else if (response.status === 403) {
             console.log('Course could not be updated.');
-            return response.json().then(data => {
+            return response.json()
+                            .then(data => {
                 return data.errors;
             });
         } else {
@@ -97,7 +101,8 @@ export default class Data {
             return [];
         } else if (response.status === 403) {
             console.log('Course could not be deleted.');
-            return response.json().then(data => {
+            return response.json()
+                            .then(data => {
                 return data.errors;
             });
         } else {

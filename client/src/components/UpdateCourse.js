@@ -28,24 +28,24 @@ export default class UpdateCourse extends Component {
         const course = async () => {
             const { id } = this.props.match.params;
             await axios(config.apiBaseUrl + "/courses/" + id)
-              .then((response) => {
-                if (response.data == null) {
-                  this.props.history.push("/notfound");
-                } else if (
-                  response.data.teacher.emailAddress !==
-                  this.props.context.authenticatedUser.emailAddress
-                ) {
-                  this.props.history.push("/forbidden");
-                } else {
-                  this.setState({ course: response.data });
-                }
-              })
-              .catch((error) => {
-                this.props.history.push({
-                  pathname: "/error",
-                  state: { error: error.message },
+                .then((response) => {
+                    if (response.data == null) {
+                    this.props.history.push("/notfound");
+                    } else if (
+                    response.data.teacher.emailAddress !==
+                    this.props.context.authenticatedUser.emailAddress
+                    ) {
+                    this.props.history.push("/forbidden");
+                    } else {
+                    this.setState({ course: response.data });
+                    }
+                })
+                .catch((error) => {
+                    this.props.history.push({
+                    pathname: "/error",
+                    state: { error: error.message },
+                    });
                 });
-              });
             }
               course();
               
@@ -55,6 +55,7 @@ export default class UpdateCourse extends Component {
     change = (event) => {
         let name;
         const value = event.target.value;
+
         if (event.target.name === 'courseTitle') {
             name = 'title';
         } else if (event.target.name === 'courseDescription') {
@@ -62,7 +63,7 @@ export default class UpdateCourse extends Component {
         } else {
             name = event.target.name;
         }
-        console.log(name);
+
         this.setState(() => {
             return {
                 ...this.state,
@@ -81,20 +82,16 @@ export default class UpdateCourse extends Component {
                 authenticatedUser
             },
         } = this.props;
-        console.log(this.props);
-        // const {context} = this.props;
-        // const {from} = this.props.location.state || {from: {pathname: '/'}};
-        // const {emailAddress, password} = this.state;
         const {course} = this.state;
+
         this.props.context.actions.updateCourse(course, authenticatedUser.emailAddress, authenticatedUser.password)
-            .then((errors) => {
-                if (errors.length) {
-                    this.setState({errors});
-                } else {
-                    this.props.history.push('/');
-                }
-            });
-    
+                                    .then((errors) => {
+                                        if (errors.length) {
+                                            this.setState({errors});
+                                        } else {
+                                            this.props.history.push('/');
+                                        }
+                                    });
     }
 
     // redirects users to home page
@@ -110,7 +107,6 @@ export default class UpdateCourse extends Component {
             },
         } = this.props;
         const {title, description, estimatedTime, materialsNeeded} = this.state.course;
-        console.log(title);
         return(
             <div className='wrap'>
                 <h2>Update Course</h2>

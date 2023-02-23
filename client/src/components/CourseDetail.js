@@ -18,7 +18,6 @@ export default function CourseDetail({context, history}) {
         const courseFind = async () => {
             const courseInfo = await axios(config.apiBaseUrl + '/courses/' + id)
                                     .catch((error) => {
-                                        console.log(error);
                                         if (error.response.status === 404) {
                                             history.push({ pathname: '/notfound' });
                                         } else {
@@ -29,7 +28,7 @@ export default function CourseDetail({context, history}) {
                                                 }});
                                         }
                                     });
-                console.log(courseInfo);
+                                    
             if (courseInfo !== undefined) {
                 setCourse(courseInfo.data);
                 setIsLoaded(true);

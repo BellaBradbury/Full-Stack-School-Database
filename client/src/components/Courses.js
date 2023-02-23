@@ -12,14 +12,14 @@ export default function Courses({ history }) {
     useEffect(() => {
         const coursesFind = async () => {
             await axios.get(config.apiBaseUrl + '/courses')
-                    .then((response) => {
-                        setCourses(response.data);
-                    })
-                    .catch((err) => {
-                        history.push({
-                            pathname: '/errors', 
-                            state: {error: err.message}});
-                    });
+                        .then((response) => {
+                            setCourses(response.data);
+                        })
+                        .catch((err) => {
+                            history.push({
+                                pathname: '/errors', 
+                                state: {error: err.message}});
+                        });
         }
         coursesFind();
         // eslint-disable-next-line react-hooks/exhaustive-deps
