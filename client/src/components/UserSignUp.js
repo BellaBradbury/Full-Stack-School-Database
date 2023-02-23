@@ -35,27 +35,28 @@ export default class UserSignUp extends Component {
                     submitButtonText='Sign Up'
                     elements={() => (
                         <React.Fragment>
+                            <label for='firstName'>First Name</label>
                             <input 
                                 id='firstName'
                                 name='firstName'
                                 type='text'
                                 value={firstName}
-                                onChange={this.change}
-                                placeholder='First Name' />
+                                onChange={this.change} />
+                            <label for='lastName'>Last Name</label>
                             <input 
                                 id='lastName'
                                 name='lastName'
                                 type='text'
                                 value={lastName}
-                                onChange={this.change}
-                                placeholder='Last Name' />
+                                onChange={this.change} />
+                            <label for='emailAddress'>Email Address</label>
                             <input 
                                 id='emailAddress'
                                 name='emailAddress'
-                                type='text'
+                                type='email'
                                 value={emailAddress}
-                                onChange={this.change}
-                                placeholder='Email Address' />
+                                onChange={this.change} />
+                            <label for='password'>Password</label>
                             <input 
                                 id='password'
                                 name='password'

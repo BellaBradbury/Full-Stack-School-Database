@@ -73,8 +73,8 @@ export default class CreateCourse extends Component {
                 <h2>Create Course</h2>
                 <Form submit={this.submit} cancel={this.cancel} errors={errors} submitButtonText='Create Course' 
                     elements={() => (
-                        <>
-                            <div className='main--flex'>
+                        <div className='main--flex'>
+                            <div>
                                 <label htmlFor='courseTitle'>Course Title</label>
                                 <input id='CourseTitle' name='CourseTitle' type='text' value={title} onChange={this.change} />
                                 <p>By {this.props.context.authenticatedUser.firstName} {this.props.context.authenticatedUser.lastName}</p>
@@ -89,7 +89,7 @@ export default class CreateCourse extends Component {
                                 <label htmlFor='materialsNeeded'>Materials Needed</label>
                                 <textarea id='materialsNeeded' name='materialsNeeded' value={materialsNeeded} onChange={this.change} />
                             </div>
-                        </>
+                        </div>
                     )}
                 />
             </div>

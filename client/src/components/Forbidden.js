@@ -8,7 +8,7 @@ export default function Forbidden({
     return (
         <div className="wrap">
             <h2>Forbidden</h2>
-            <p>Uh oh! You do not have access to this course.</p>
+            <p>Uh oh! You can't access this page.</p>
         </div>
     );
 }

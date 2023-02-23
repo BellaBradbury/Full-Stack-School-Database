@@ -109,8 +109,8 @@ export default class UpdateCourse extends Component {
                 <h2>Update Course</h2>
                 <Form errors={this.state.errors} cancel={this.cancel} submit={this.submit} submitButtonText='Update Course' 
                     elements = {() => (
-                        <>
-                            <div className='main--flex'>
+                        <div className='main--flex'>
+                            <div>
                                 <label htmlFor='courseTitle'>Course Title</label>
                                 <input id='CourseTitle' name='CourseTitle' type='text' value={title} onChange={this.change} />
                                 <p>By {authenticatedUser.firstName} {authenticatedUser.lastName}</p>
@@ -125,7 +125,7 @@ export default class UpdateCourse extends Component {
                                 <label htmlFor='materialsNeeded'>Materials Needed</label>
                                 <textarea id='materialsNeeded' name='materialsNeeded' value={materialsNeeded} onChange={this.change} />
                             </div>
-                        </>
+                        </div>
                     )}
                 />
             </div> 

@@ -60,7 +60,7 @@ export default function CourseDetail({context, history}) {
         // shows update & delete buttons to auth user in owned course detail page
             // shows courses list button, title, owner name, description, time, and material information to all users
         return (
-            <div>
+            <>
                 <div className='actions--bar'>
                     <div className='wrap'>
                         {authenticatedUser !== null && authenticatedUser.id === course.teacher.id ? (
@@ -71,11 +71,11 @@ export default function CourseDetail({context, history}) {
                         ) : (
                             <></>
                         )}
-                        <Link to={'/'} className='button button-secondary'>Return to Courses List</Link>
+                        <Link to={'/'} className='button button-secondary'>Return to List</Link>
                     </div>
                 </div>
                 <div className='wrap'>
-                        <h2>Course Details</h2>
+                        <h2>Course Detail</h2>
                         <form>
                             <div className='main--flex'>
                                 <div>
@@ -87,12 +87,13 @@ export default function CourseDetail({context, history}) {
                                 <div>
                                     <h3 className='course--detail--title'>Estimated Time</h3>
                                     <p>{course.estimatedTime}</p>
+                                    <h3 class='course--detail--title'>Materials Needed</h3>
                                     <ReactMarkdown className='course--detail--list'>{course.materialsNeeded}</ReactMarkdown>
                                 </div>
                             </div>
                         </form>
                 </div>
-            </div>
+            </>
         );
     } else {
         // shows course not found if course data does not exist
