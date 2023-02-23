@@ -20,7 +20,7 @@ import UserSignOut from './components/UserSignOut';
 import CreateCourse from './components/CreateCourse';
 import CourseDetail from './components/CourseDetail';
 import UpdateCourse from './components/UpdateCourse';
-import Error from './components/Error';
+import UnhandledError from './components/UnhandledError';
 import Forbidden from './components/Forbidden';
 
 // FUNCTIONS TO USE WITH COMPONENTS
@@ -54,7 +54,7 @@ function App() {
                     <Route path='/courses/:id' component={CourseDetailWithContext} />
                     <Route path='/notfound' component={NotFound} />
                     <Route path='/forbidden' component={ForbiddenWithContext} />
-                    <Route path='/error' component={Error} />
+                    <Route path='/error' component={UnhandledError} />
                     <Route path='*' component={NotFound} />
                 </Switch>
             </main>
