@@ -18,31 +18,34 @@ export default function CourseDetail({context, history}) {
         const courseFind = async () => {
             const courseInfo = await axios(config.apiBaseUrl + '/courses/' + id)
                                     .catch((error) => {
-                                        history.push({
-                                            pathname: '/error', 
-                                            state: {
-                                                error: error.message
-                                            }});
+                                        console.log(error);
+                                        if (error.response.status === 404) {
+                                            history.push({ pathname: '/notfound' });
+                                        } else {
+                                            history.push({
+                                                pathname: '/error', 
+                                                state: {
+                                                    error: error.message
+                                                }});
+                                        }
                                     });
-            setCourse(courseInfo.data);
-             if (setCourse.data === null) {
-                history.push('/notfound');
-            } else {
+                console.log(courseInfo);
+            if (courseInfo !== undefined) {
+                setCourse(courseInfo.data);
                 setIsLoaded(true);
             }
         }
         courseFind();
     }, [id, history]);
 
-    console.log(course.id);
     // handles deletion of auth user owned course
     const deleteCourse = async () => {
         if (authenticatedUser !== null) {
-            context.actions.deleteCourse(course.id, authenticatedUser.emailAddress, authenticatedUser.password)
+            context.actions.deleteCourse(course, authenticatedUser.emailAddress, authenticatedUser.password)
                             .then((response) => {
                                 if (response.status === 204) {
                                     console.log('Course successfully deleted.');
-                                    history.push('/');
+                                    this.props.history.push('/');
                                 }
                             })
                             .catch((error) => {
@@ -95,11 +98,6 @@ export default function CourseDetail({context, history}) {
                         </form>
                 </div>
             </>
-        );
-    } else {
-        // shows course not found if course data does not exist
-        return (
-            <p>Course Was Not Found</p>
         );
     }
 }
