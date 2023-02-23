@@ -53,9 +53,16 @@ export default class UpdateCourse extends Component {
 
     // sets state of input field & updates in real-time
     change = (event) => {
-        const name = event.target.name;
+        let name;
         const value = event.target.value;
-
+        if (event.target.name === 'courseTitle') {
+            name = 'title';
+        } else if (event.target.name === 'courseDescription') {
+            name = 'description';
+        } else {
+            name = event.target.name;
+        }
+        console.log(name);
         this.setState(() => {
             return {
                 ...this.state,
@@ -103,7 +110,7 @@ export default class UpdateCourse extends Component {
             },
         } = this.props;
         const {title, description, estimatedTime, materialsNeeded} = this.state.course;
-
+        console.log(title);
         return(
             <div className='wrap'>
                 <h2>Update Course</h2>
@@ -112,7 +119,7 @@ export default class UpdateCourse extends Component {
                         <div className='main--flex'>
                             <div>
                                 <label htmlFor='courseTitle'>Course Title</label>
-                                <input id='CourseTitle' name='CourseTitle' type='text' value={title} onChange={this.change} />
+                                <input id='courseTitle' name='courseTitle' type='text' value={title} onChange={this.change} />
                                 <p>By {authenticatedUser.firstName} {authenticatedUser.lastName}</p>
 
                                 <label htmlFor='courseDescription'>Course Description</label>
