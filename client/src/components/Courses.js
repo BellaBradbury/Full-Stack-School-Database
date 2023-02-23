@@ -17,7 +17,7 @@ export default function Courses({ history }) {
                         })
                         .catch((err) => {
                             history.push({
-                                pathname: '/errors', 
+                                pathname: '/error', 
                                 state: {error: err.message}});
                         });
         }

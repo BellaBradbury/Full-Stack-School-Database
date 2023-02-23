@@ -82,7 +82,7 @@ export default class Data {
         if (response.status === 204) {
             console.log('Course updated!');
             return [];
-        } else if (response.status === 403) {
+        } else if (response.status === 400) {
             console.log('Course could not be updated.');
             return response.json()
                             .then(data => {
