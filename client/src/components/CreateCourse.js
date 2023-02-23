@@ -16,22 +16,25 @@ export default class CreateCourse extends Component {
     }
 
     // sets state of input field & updates in real-time
-    change = (event) => {
-        const name = event.target.name;
-        const value = event.target.value;
-        this.setState(() => {
-            return {
-                [name]: value
-            }
-        });
-        console.log(value);
-    }
+    // change = (event) => {
+    //     const name = event.target.name;
+    //     const value = event.target.value;
+    //     this.setState(() => {
+    //         return {
+    //             [name]: value
+    //         }
+    //     });
+    //     console.log(value);
+    // }
 
     // creates new user or displays errors based on user input
     submit = () => {
         const {context} = this.props;
-        const {title, description, estimatedTime, materialsNeeded} = this.state;
-                
+        const materialsNeeded = document.getElementById('materialsNeeded').value;
+        const title = document.getElementById('CourseTitle').value;
+        const description = document.getElementById('courseDescription').value;
+        const estimatedTime = document.getElementById('estimatedTime').value;
+
         const {
             context: {
                 authenticatedUser: {
@@ -68,7 +71,8 @@ export default class CreateCourse extends Component {
     // shows form that validates user input, display errors when needed, and create & cancel buttons
     render() {
         const {title, description, estimatedTime, materialsNeeded, errors} = this.state;
-       return (
+
+        return (
             <div className='wrap'>
                 <h2>Create Course</h2>
                 <Form submit={this.submit} cancel={this.cancel} errors={errors} submitButtonText='Create Course' 
@@ -76,18 +80,18 @@ export default class CreateCourse extends Component {
                         <div className='main--flex'>
                             <div>
                                 <label htmlFor='courseTitle'>Course Title</label>
-                                <input id='CourseTitle' name='CourseTitle' type='text' value={title} onChange={this.change} />
+                                <input id='CourseTitle' name='CourseTitle' type='text' defaultValue={title} />
                                 <p>By {this.props.context.authenticatedUser.firstName} {this.props.context.authenticatedUser.lastName}</p>
 
                                 <label htmlFor='courseDescription'>Course Description</label>
-                                <textarea id='courseDescription' name='courseDescription' value={description} onChange={this.change} />
+                                <textarea id='courseDescription' name='courseDescription' defaultValue={description} />
                             </div>
                             <div>
                                 <label htmlFor='estimatedTime'>Estimated Time</label>
-                                <input id='estimatedTime' name='estimatedTime' type='text' value={estimatedTime} onChange={this.change} />
+                                <input id='estimatedTime' name='estimatedTime' type='text' defaultValue={estimatedTime} />
 
                                 <label htmlFor='materialsNeeded'>Materials Needed</label>
-                                <textarea id='materialsNeeded' name='materialsNeeded' value={materialsNeeded} onChange={this.change} />
+                                <textarea id='materialsNeeded' name='materialsNeeded' defaultValue={materialsNeeded} />
                             </div>
                         </div>
                     )}

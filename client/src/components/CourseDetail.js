@@ -87,7 +87,7 @@ export default function CourseDetail({context, history}) {
                                 <div>
                                     <h3 className='course--detail--title'>Estimated Time</h3>
                                     <p>{course.estimatedTime}</p>
-                                    <h3 class='course--detail--title'>Materials Needed</h3>
+                                    <h3 className='course--detail--title'>Materials Needed</h3>
                                     <ReactMarkdown className='course--detail--list'>{course.materialsNeeded}</ReactMarkdown>
                                 </div>
                             </div>
