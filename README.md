@@ -1,8 +1,10 @@
 # Build a Full Stack Application with React and a REST API
-  Team Treehouse - Web Development TechDegree - Project 13
 
+Team Treehouse - Web Development TechDegree - Project 13
+* Submitted 02/23/23 ***EXCEEDS EXPECTATIONS***
 
-Submitted 02/23/23 ***EXCEEDS EXPECTATIONS***
+Team Treehouse - Full Stack JavaScript TechDegree - Project 10
+* Submitted 02/28/23 ***EXCEEDS EXPECTATIONS***
 
 -SKILLS USED-
 * React
