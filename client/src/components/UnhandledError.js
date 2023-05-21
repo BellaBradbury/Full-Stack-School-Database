@@ -8,7 +8,7 @@ export default function UnhandledError(props) {
     return (
         <div className='wrap'>
             <h2>Server Error</h2>
-            <p>An unexpected error has occured.</p>
+            <p>An unexpected error has occurred.</p>
             <p>{error}</p>
         </div>
     );

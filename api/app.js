@@ -78,7 +78,7 @@ app.post('/api/users', ( async (req, res, next) => {
   try {
     const user = req.body;
 
-    // possible validaiton errors
+    // possible validation errors
     const errors = [];
     if(!user.firstName){
       errors.push('Please provide a first name');
@@ -134,10 +134,9 @@ app.get('/api/courses', asyncHandler( async (req, res) => {
 
 // CREATE a new course
 app.post('/api/courses', authenticateUser, asyncHandler( async (req, res) => {
-  const user = req.currentUser;
   let course = req.body;
 
-  // possible validaiton errors
+  // possible validation errors
   const errors = [];
   if(!course.title){
     errors.push('Please provide a title');
@@ -191,7 +190,7 @@ app.put('/api/courses/:id', authenticateUser, asyncHandler( async (req, res) => 
     if(oneCourse) {
       const course = req.body;
   
-      // possible validaiton errors
+      // possible validation errors
       const errors = [];
       if(!course.title){
         errors.push('Please provide a title');

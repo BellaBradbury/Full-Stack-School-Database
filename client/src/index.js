@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from './Context';
 
-// COMPONENETS
+// COMPONENTS
 import App from './App';
 
 // STYLESHEETS

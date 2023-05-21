@@ -5,7 +5,7 @@ import Form from './Form';
 
 // COMPONENT TO SIGN UP A NEW USER
 export default class UserSignUp extends Component {
-    // define user poperty state
+    // define user property state
     state = {
         firstName: '',
         lastName: '',
@@ -15,7 +15,7 @@ export default class UserSignUp extends Component {
     }
 
     render() {
-        // uses user proptery state
+        // uses user property state
         const {
             firstName,
             lastName,
